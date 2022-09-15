@@ -10,13 +10,20 @@ import ru.maren.sb_1_conditional.profile.SystemProfile;
 @Configuration
 public class JavaConfig {
     @Bean
-    @ConditionalOnProperty(value = "netology.profile.dev", havingValue = "true", matchIfMissing = true)
+    @ConditionalOnProperty(
+            prefix = "netology.profile",
+            name = "dev",
+            havingValue = "true",
+            matchIfMissing = true)
     public SystemProfile devProfile() {
         return new DevProfile();
     }
 
     @Bean
-    @ConditionalOnProperty(value = "netology.profile.dev", havingValue = "false")
+    @ConditionalOnProperty(
+            prefix = "netology.profile",
+            name = "dev",
+            havingValue = "false")
     public SystemProfile prodProfile() {
         return new ProductionProfile();
     }
